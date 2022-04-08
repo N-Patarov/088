@@ -2,7 +2,10 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
-
+import homeRoute from './routes/homeRoute.js';
+import{ scrapeFlagman } from './crawler/sources/flagman.js';
+import{ scrapeNewsBg } from './crawler/sources/newsBg.js';
+import { scrape }  from './crawler/index.js';
 
 const app = express();
 app.use(bodyParser.json({limit: "30mb", extended: true}));
@@ -17,6 +20,5 @@ db = await mongoose.connect(CONNECTION_URL)
 .then( () => app.listen(PORT, console.log("App running on: http://localhost:" + PORT)))
 .catch(err => console.error)
 
-app.get("/", (req, res) => {
-    res.status(200).send("It works");
-});
+app.use("/", homeRoute);
+scrape();

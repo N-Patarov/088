@@ -13,7 +13,7 @@ function resolveAfter5Minutes() {
       }, 300000);
     });
   }
-async function scrape () {
+export async function scrape () {
     while (true) {
       scrapeFlagman();
       scrapeNewsBg();
@@ -21,6 +21,6 @@ async function scrape () {
     }
 }
 
-export default scrape();
+
 
 
