@@ -1,5 +1,5 @@
 const homeController = 
    async (req, res) => {
-        res.status(200).send("It works");
+        res.render('index')
 }
 export default homeController;

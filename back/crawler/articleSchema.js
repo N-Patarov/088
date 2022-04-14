@@ -5,8 +5,10 @@ var articleSchema = new mongoose.Schema({
     text: String,
     link: String,
     description: String,
-    imgLink: String
-});
+    imgLink: String,
+},
+ { timestamps: true }
+);
 
 var Article = mongoose.model("Article", articleSchema);
 
