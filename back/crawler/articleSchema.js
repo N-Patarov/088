@@ -6,6 +6,7 @@ var articleSchema = new mongoose.Schema({
     link: String,
     description: String,
     imgLink: String,
+    source: String,
 },
  { timestamps: true }
 );

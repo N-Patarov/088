@@ -14,9 +14,13 @@ export default function ArticleCard() {
         )
     }, []);
 
+   
+    
     return(
         listOfArticles.map(
             (article) => {
+                if(article.createdAt)
+                {let us = article.createdAt.split("T")[0]}
                 return( 
                         <Grid item xs={3}>
                             <Card sx={{ maxWidth: 345 }}>
@@ -24,7 +28,7 @@ export default function ArticleCard() {
                                     component="img"
                                     height="140"
                                     image={article.imgLink}
-                                    alt="green iguana"
+                                    alt="Photo"
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
@@ -34,10 +38,20 @@ export default function ArticleCard() {
                                         {article.description}
                                     </Typography>
                                 </CardContent>
+                                
                                 <CardActions>
                                     <Button size="small">Share</Button>
                                     <Button size="small">Learn More</Button>
                                 </CardActions>
+                                <div style={{"display" : "flex"}}>
+                                <Typography variant="body2" color="text.secondary">
+                                    {article.createdAt ? article.createdAt.split("T")[1].substr(0, 5) + " " + article.createdAt.split("T")[0] : article.createdAt}
+                                </Typography>
+                                <Typography gutterBottom variant="h7" component="div" style={{"paddingLeft" : "40%"}}>
+                                    {article.source}
+                                </Typography>
+                                </div>
+                                
                             </Card>
                         </Grid>
                 );

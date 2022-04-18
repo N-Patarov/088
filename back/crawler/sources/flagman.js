@@ -43,6 +43,7 @@ export function scrapeFlagman () {
                       description: description,
                       link: article,
                       imgLink: img,
+                      source: "Flagman.bg"
                   })
                   
                   await new_article.save(function(err,result){

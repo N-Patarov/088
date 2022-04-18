@@ -40,6 +40,7 @@ export function scrapeNewsBg () {
                       description: description,
                       link: article,
                       imgLink: img,
+                      source: "News.bg"
                   })
                   
                   await new_article.save(function(err,result){
