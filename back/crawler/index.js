@@ -10,7 +10,7 @@ function resolveAfter5Minutes() {
     return new Promise(resolve => {
       setTimeout(() => {
         resolve('resolved');
-      }, 300000);
+      }, 60000);
     });
   }
 export async function scrape () {

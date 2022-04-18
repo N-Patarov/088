@@ -39,17 +39,18 @@ export default function ArticleCard() {
                                     </Typography>
                                 </CardContent>
                                 
-                                <CardActions>
-                                    <Button size="small">Share</Button>
-                                    <Button size="small">Learn More</Button>
+                                <CardActions style={{"justifyContent": "space-evenly"}}>
+                                    <Typography variant="body2" color="text.secondary">
+                                        {article.createdAt ? article.createdAt.split("T")[1].substr(0, 5) + " " + article.createdAt.split("T")[0].substr(5, 10) : article.createdAt}
+                                    </Typography>
+                                    <Button size="small" variant="text" href={article.link} target="_blank">Прочети</Button>
+                                    <Typography gutterBottom variant="h7" component="div">
+                                        {article.source}
+                                    </Typography>
                                 </CardActions>
-                                <div style={{"display" : "flex"}}>
-                                <Typography variant="body2" color="text.secondary">
-                                    {article.createdAt ? article.createdAt.split("T")[1].substr(0, 5) + " " + article.createdAt.split("T")[0] : article.createdAt}
-                                </Typography>
-                                <Typography gutterBottom variant="h7" component="div" style={{"paddingLeft" : "40%"}}>
-                                    {article.source}
-                                </Typography>
+                                <div style={{"paddingRight" : "5%","paddingLeft" : "5%", "display": "flex","justifyContent": "space-between"}}>
+                                
+                                
                                 </div>
                                 
                             </Card>
