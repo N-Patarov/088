@@ -4,6 +4,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import homeRoute from './routes/homeRoute.js';
 import apiRoute from './routes/apiRoute.js';
+import articleRoute from './routes/articleRoute.js';
 import{ scrapeFlagman } from './crawler/sources/flagman.js';
 import{ scrapeNewsBg } from './crawler/sources/newsBg.js';
 import { scrape }  from './crawler/index.js';
@@ -25,4 +26,5 @@ db = await mongoose.connect(CONNECTION_URL)
 
 app.use("/", homeRoute);
 app.use("/api", apiRoute);
+app.use("/article/", articleRoute);
 scrape();

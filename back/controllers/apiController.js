@@ -5,5 +5,9 @@ const apiControlller =
     Article.find({}).sort({_id:-1}).then(function(article){
         res.send(article);
     }).catch(err);
+    const id = req.query.id;
+
+    
+    
 }
 export default apiControlller;
