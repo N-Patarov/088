@@ -55,7 +55,6 @@ export default function ArticleCard() {
                                         {article.createdAt ? article.createdAt.split("T")[1].substr(0, 5) + " " + article.createdAt.split("T")[0].substr(5, 10) : article.createdAt}
                                     </Typography>
                                     <Button size="small" variant="text" href={"/article?id=" + article._id} target="_blank">Прочети</Button>
-                                    <Button size="small" variant="text" onClick={LoadArticle}>Test</Button>
                                     <Typography gutterBottom variant="h7" component="div">
                                         {article.source}
                                     </Typography>
