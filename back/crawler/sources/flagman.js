@@ -2,6 +2,7 @@ import * as cheerio from 'cheerio';
 import pretty from 'pretty';
 import request from 'request';
 import mongoose from 'mongoose';
+import moment from 'moment-timezone';
 
 import Article from '../articleSchema.js';
 
@@ -10,7 +11,7 @@ var article = "";
 var title = "";
 var description = "";
 var img = "";
-
+var when = "";
 
 
 export function scrapeFlagman () {
@@ -29,13 +30,17 @@ export function scrapeFlagman () {
                 title = pretty($('.content').first().text());
                 img = flagman + $('img').first().attr('src');
                 description = pretty($('.description').first().find('.text').text());
+               
+                const dateBg = moment.tz(Date.now(), "Europe/Sofia");
+                when = dateBg;
 
                 const articleExist = await Article.exists({ link: article });
                 console.log(new Date().toLocaleTimeString())
                 console.log(article);
-                console.log(title);
-                console.log(description);
-                console.log(img);
+               
+                //console.log(title);
+                //console.log(description);
+                //console.log(img);
 
                 if(!articleExist){
                     var new_article = new Article({
@@ -43,7 +48,8 @@ export function scrapeFlagman () {
                       description: description,
                       link: article,
                       imgLink: img,
-                      source: "Flagman.bg"
+                      source: "Flagman.bg",
+                      when: when
                   })
                   
                   await new_article.save(function(err,result){
@@ -56,7 +62,8 @@ export function scrapeFlagman () {
                   })
                 }else{
                   console.log("article already exist")
-                  console.log("retrying in 5 minutes... \n");
+                  console.log("retrying in 1 minute... \n");
+                  
                 }
             })
             ();

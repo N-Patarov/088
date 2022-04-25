@@ -32,6 +32,13 @@ export default function ArticleCard() {
                 if(article.createdAt)
                 {let us = article.createdAt.split("T")[0]}
 
+                function addTime(start, increment, respectDay = false) {
+                    let pad = n => ('0' + n).slice(-2);
+                    let timeToMins = time => time.split(':').reduce((h, m) => h*60 + m*1);
+                    let minsToTime = (mins, respectDay = false) => `${pad((mins / 60 | 0) % (respectDay? 24 : Number.POSITIVE_INFINITY))}:${pad(mins%60)}`;
+                    return minsToTime(timeToMins(start) + timeToMins(increment), respectDay);
+                }
+
                 return( 
                         <Grid item xs={3}>
                             <Card sx={{ maxWidth: 345 }}>
@@ -52,7 +59,7 @@ export default function ArticleCard() {
                                 
                                 <CardActions style={{"justifyContent": "space-evenly"}}>
                                     <Typography variant="body2" color="text.secondary">
-                                        {article.createdAt ? article.createdAt.split("T")[1].substr(0, 5) + " " + article.createdAt.split("T")[0].substr(5, 10) : article.createdAt}
+                                        {article.when ? article.when.substr(4, 20) : article.when}
                                     </Typography>
                                     <Button size="small" variant="text" href={"/article?id=" + article._id} target="_blank">Прочети</Button>
                                     <Typography gutterBottom variant="h7" component="div">

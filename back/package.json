@@ -21,7 +21,8 @@
     "ejs": "^3.1.6",
     "express": "^4.17.3",
     "jsx": "^0.9.89",
-    "mongoose": "^6.2.10",
+    "moment-timezone": "^0.5.34",
+    "mongoose": "^6.3.1",
     "pretty": "^2.0.0",
     "request": "^2.88.2"
   }

@@ -2,7 +2,7 @@ import * as cheerio from 'cheerio';
 import pretty from 'pretty';
 import request from 'request';
 import mongoose from 'mongoose';
-
+import moment from 'moment-timezone';
 import Article from '../articleSchema.js';
 
 const newsBg = 'https://news.bg/latest';
@@ -10,7 +10,7 @@ var article = "";
 var title = "";
 var description = "";
 var img = "";
-
+var when = "";
 
 export function scrapeNewsBg () {
  
@@ -23,9 +23,12 @@ export function scrapeNewsBg () {
                 img = $('.thumb').first().attr('src');
                 title = $('h2').first().text();
                 description = $('p').first().text();
-
+                const dateBg = moment.tz(Date.now(), "Europe/Sofia");
+                when = dateBg;
                 
                 const articleExist = await Article.exists({ link: article });
+                
+                console.log(article);
                 /*
                 console.log(articleExist);
                 console.log(article);
@@ -40,6 +43,7 @@ export function scrapeNewsBg () {
                       description: description,
                       link: article,
                       imgLink: img,
+                      when: when,
                       source: "News.bg"
                   })
                   
@@ -53,7 +57,7 @@ export function scrapeNewsBg () {
                   })               
                 }else{
                   console.log("article already exist")
-                  console.log("retrying in 5 minutes... \n");
+                  console.log("retrying in 1 minute... \n");
                 }
             })
             ();

@@ -9,6 +9,8 @@ import{ scrapeFlagman } from './crawler/sources/flagman.js';
 import{ scrapeNewsBg } from './crawler/sources/newsBg.js';
 import { scrape }  from './crawler/index.js';
 
+import Article from './crawler/articleSchema.js';
+
 const app = express();
 app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
@@ -27,4 +29,22 @@ db = await mongoose.connect(CONNECTION_URL)
 app.use("/", homeRoute);
 app.use("/api", apiRoute);
 app.use("/article/", articleRoute);
+
+var test_article = new Article({
+    title: "title",
+    description: "description",
+    link: "article",
+    imgLink: "img",
+    source: "Flagman.bg",
+    when: "Now"
+})
+
+await test_article.save(function(err,result){
+  if (err){
+      console.log(err);
+  }
+  else{
+      console.log(result)
+  }
+})
 scrape();

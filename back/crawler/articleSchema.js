@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import moment from 'moment-timezone';
+
 
 var articleSchema = new mongoose.Schema({
     title: String,
@@ -7,9 +9,12 @@ var articleSchema = new mongoose.Schema({
     description: String,
     imgLink: String,
     source: String,
-},
- { timestamps: true }
+    when: String,
+    createdAt: { type: Date, default: Date.now},
+    expire_at: {type: Date, default: Date.now, expires: 1800} 
+} 
 );
+
 
 var Article = mongoose.model("Article", articleSchema);
 
