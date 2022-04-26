@@ -11,7 +11,7 @@ var articleSchema = new mongoose.Schema({
     source: String,
     when: String,
     createdAt: { type: Date, default: Date.now},
-    expire_at: {type: Date, default: Date.now, expires: 1800} 
+    expire_at: {type: Date, default: Date.now, expires: 172800} 
 } 
 );
 

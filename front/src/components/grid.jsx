@@ -3,7 +3,7 @@ import ArticleCard from './card';
 
 export default function ArticleGrid(){
     return(
-        <div style={{paddingLeft: '5%', paddingTop: '2%'}}>
+        <div style={{marginTop: '10%'}}>
             <Grid container spacing={3}>
                 <ArticleCard />
             </Grid>

@@ -30,21 +30,4 @@ app.use("/", homeRoute);
 app.use("/api", apiRoute);
 app.use("/article/", articleRoute);
 
-var test_article = new Article({
-    title: "title",
-    description: "description",
-    link: "article",
-    imgLink: "img",
-    source: "Flagman.bg",
-    when: "Now"
-})
-
-await test_article.save(function(err,result){
-  if (err){
-      console.log(err);
-  }
-  else{
-      console.log(result)
-  }
-})
 scrape();
