@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState} from "react";
 import Axios from 'axios';
 
-import './article.css';
+import './css/article.css';
 
 export default function Article(){
 
