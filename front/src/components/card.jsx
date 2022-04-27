@@ -41,7 +41,7 @@ export default function ArticleCard() {
 
                 return( 
                         <Grid item xs={3}>
-                            <Card sx={{ maxWidth: 345 }}>
+                            <Card sx={{ maxWidth: 345, backgroundColor: '#064663', color: '#ffff' }}>
                                 <CardMedia
                                     component="img"
                                     height="140"
@@ -52,13 +52,13 @@ export default function ArticleCard() {
                                     <Typography gutterBottom variant="h5" component="div">
                                         {article.title}
                                     </Typography>
-                                    <Typography variant="body2" color="text.secondary">
+                                    <Typography variant="body2" sx={{color: '#d9d9d9'}}>
                                         {article.description}
                                     </Typography>
                                 </CardContent>
                                 
                                 <CardActions style={{"justifyContent": "space-evenly"}}>
-                                    <Typography variant="body2" color="text.secondary">
+                                    <Typography variant="body2" sx={{color: '#d9d9d9'}}>
                                         {article.when ? article.when.substr(4, 20) : article.when}
                                     </Typography>
                                     <Button size="small" variant="text" href={"/article?id=" + article._id} target="_blank">Прочети</Button>
