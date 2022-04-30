@@ -7,7 +7,7 @@ import { Grid } from '@mui/material';
 export default function HomePage(){
     
     return(
-        <Grid container>
+        <Grid container sx={{backgroundColor: '#02141C;'}}>
             <Grid item xs={2}>
                 <Sidebar />
             </Grid>
