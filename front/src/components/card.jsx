@@ -1,49 +1,38 @@
 import * as React from 'react';
-import {Card, CardActions, CardContent, CardMedia, IconButton, Typography, Grid} from '@mui/material/';
+import {Card, CardActions, CardContent, CardMedia, IconButton, Typography, Grid, Skeleton} from '@mui/material/';
 import {ThumbUp, ChatBubble} from '@mui/icons-material';
 import { useEffect, useState } from "react";
 import Axios from 'axios';
+import SkeletonGrid from './Skeleton';
 
 export default function ArticleCard() {
     
     const [ listOfArticles, setListOfArticles ] = useState([]);
-    useEffect(() => {
-        Axios.get("http://localhost:8000/api").then(
-            (response) =>{
+    const [ isLoading, setIsLoading ] = useState(true);
+    async function getData() {
+        await Axios.get("http://localhost:8000/api").then(         
+        (response) =>{
                 setListOfArticles(response.data);
-            }
+                setIsLoading(false)
+            },
+            
         )
+    }
+    useEffect(() => {
+        getData()
     }, []);
 
-   
-   
-    
+    if(isLoading) {
+        return(
+            <SkeletonGrid />
+        )
+    }
     return(
         listOfArticles.map(
             (article) => {
-
-                function LoadArticle () {
-                    Axios.get("http://localhost:8000/article/?id=" + article._id).then(
-                        (response) =>{
-                            console.log(response.data._id);
-                        }
-                    )
-                }
-
-                if(article.createdAt)
-                {let us = article.createdAt.split("T")[0]}
-
-                function addTime(start, increment, respectDay = false) {
-                    let pad = n => ('0' + n).slice(-2);
-                    let timeToMins = time => time.split(':').reduce((h, m) => h*60 + m*1);
-                    let minsToTime = (mins, respectDay = false) => `${pad((mins / 60 | 0) % (respectDay? 24 : Number.POSITIVE_INFINITY))}:${pad(mins%60)}`;
-                    return minsToTime(timeToMins(start) + timeToMins(increment), respectDay);
-                }
-
                 return( 
-                        <Grid item xs={3}>
-                           
-                                <Card sx={{ maxWidth: 345, backgroundColor: '#064663', color: '#ffff' }}>
+                        <Grid item xs={3}>                             
+                            <Card sx={{ maxWidth: 345, backgroundColor: '#064663', color: '#ffff' }}>
                                 <a href={"/article?id=" + article._id} target="_blank">
                                     <CardMedia
                                         component="img"
@@ -75,10 +64,11 @@ export default function ArticleCard() {
                                         </Typography>
                                     </CardActions>
                                 </Card>
-                            
-                        </Grid>
-                );
-            }       
+                          </Grid>  
+                       
+                )
+            }        
         )
-    );
-}
+
+        )
+    }
