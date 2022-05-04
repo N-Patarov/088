@@ -26,8 +26,8 @@ export const userRegister =
             password: hashedPassword,
         });
         try{
-            const savedUser = await user.save();
-            res.send(savedUser);
+            await user.save();
+            res.send({user: user._id});
         }
         catch(err){
             res.send(err);
