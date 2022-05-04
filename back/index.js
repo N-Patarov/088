@@ -6,6 +6,7 @@ import homeRoute from './routes/homeRoute.js';
 import apiRoute from './routes/apiRoute.js';
 import articleRoute from './routes/articleRoute.js';
 import authRoute from './routes/authRoute.js';
+import testRoute from './routes/testRoute.js';
 import{ scrapeFlagman } from './crawler/sources/flagman.js';
 import{ scrapeNewsBg } from './crawler/sources/newsBg.js';
 import { scrape }  from './crawler/index.js';
@@ -31,5 +32,5 @@ app.use("/", homeRoute);
 app.use("/api", apiRoute);
 app.use("/api/user", authRoute);
 app.use("/article/", articleRoute);
-
+app.use("/api/test",testRoute);
 scrape();
