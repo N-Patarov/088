@@ -1,6 +1,8 @@
 import User from '../schema/userSchema.js';
 import Joi from '@hapi/joi';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import 'dotenv/config';
 
 const registerSchema = Joi.object({
     name: Joi.string().min(3).required(),
@@ -59,7 +61,10 @@ export const userLogin =
 
     if( !validated.error && user && validPassword) {
 
-        res.send("User logged in successfully!")
+        // JWT
+        const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET);
+        res.header('auth', token).send(token)
+        //res.send("User logged in successfully!")
        
     } else{
         res.status(400).send("Email or password is wrong");
