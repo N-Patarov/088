@@ -12,26 +12,28 @@ export const userRegister =
    async (req, res, err) => {
 
     //Check
-    const error = schema.validate(req.body);
+    const validated = schema.validate(req.body);
     const emailExists = await User.findOne({email: req.body.email});
-    if( error || emailExists) {res.send(400)} 
+    if( validated && !emailExists) {
+        //Encrypt
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-    //Encrypt
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
-
-    //Save
-    const user = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: hashedPassword,
-    });
-    try{
-        const savedUser = await user.save();
-        res.send(savedUser);
-    }
-    catch(err){
-        res.send(err);
+        //Save
+        const user = new User({
+            name: req.body.name,
+            email: req.body.email,
+            password: hashedPassword,
+        });
+        try{
+            const savedUser = await user.save();
+            res.send(savedUser);
+        }
+        catch(err){
+            res.send(err);
+        }
+    } else{
+        res.send(400);
     }
 }
 export const userLogin = 
