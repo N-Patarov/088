@@ -2,19 +2,26 @@ import User from '../schema/userSchema.js';
 import Joi from '@hapi/joi';
 import bcrypt from 'bcryptjs';
 
-const schema = Joi.object({
+const registerSchema = Joi.object({
     name: Joi.string().min(3).required(),
     email: Joi.string().min(5).required().email(),
     password: Joi.string().min(6).required(),
 })
 
+const loginSchema = Joi.object({
+    email: Joi.string().min(5).required().email(),
+    password: Joi.string().min(6).required(),
+})
+
+// Register
 export const userRegister = 
    async (req, res, err) => {
 
     //Check
-    const validated = schema.validate(req.body);
+    const validated = registerSchema.validate(req.body);
     const emailExists = await User.findOne({email: req.body.email});
-    if( validated && !emailExists) {
+    if( !validated.error && !emailExists) {
+
         //Encrypt
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
@@ -36,7 +43,25 @@ export const userRegister =
         res.send(400);
     }
 }
+
+//Login
 export const userLogin = 
-   async (req, res, err) => {
-    res.send("Login")
+   async (req, res, err) => {    
+
+    //Check
+    const validated = loginSchema.validate(req.body);
+    const user = await User.findOne({email: req.body.email});
+    var validPassword = '';
+    if(user){
+        validPassword = await bcrypt.compare(req.body.password, user.password)
+    }
+    
+
+    if( !validated.error && user && validPassword) {
+
+        res.send("User logged in successfully!")
+       
+    } else{
+        res.status(400).send("Email or password is wrong");
+    }
 }
