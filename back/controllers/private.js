@@ -6,7 +6,8 @@ export default function Private(req, res, next) {
     if(!token){res.status(401).send('Access Denied')}
 
     try{
-        req.user = jwt.verify(token, process.env.JWT_SECRET)
+        const verified = jwt.verify(token, process.env.JWT_SECRET)
+        req.user = verified;
         next();
     }catch(err){
         res.status(400).send('Invalid Token')
