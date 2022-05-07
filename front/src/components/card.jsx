@@ -31,7 +31,7 @@ export default function ArticleCard() {
         listOfArticles.map(
             (article) => {
                 return( 
-                        <Grid item xs={3}>                             
+                        <Grid item sm={6} md={4} lg={3}>                             
                             <Card sx={{ maxWidth: 345, backgroundColor: '#064663', color: '#ffff' }}>
                                 <a href={"/article?id=" + article._id} target="_blank">
                                     <CardMedia

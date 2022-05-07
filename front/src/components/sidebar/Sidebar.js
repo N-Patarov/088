@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
 import { SidebarData } from './SidebarData';
 import SubMenu from './SubMenu';
 import { IconContext } from 'react-icons/lib';
@@ -26,7 +23,7 @@ const SidebarWrap = styled.div`
 
 const Sidebar = () => {
   return (
-    <>
+    <div sx={{ display: { xs: "none", lg: "flex" } }}>
       <IconContext.Provider value={{ color: '#fff' }}>
       
         <SidebarNav sidebar>
@@ -38,7 +35,7 @@ const Sidebar = () => {
           </SidebarWrap>
         </SidebarNav>
       </IconContext.Provider>
-    </>
+    </div>
   );
 };
 
