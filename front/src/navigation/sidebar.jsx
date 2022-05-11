@@ -111,9 +111,7 @@ export default function SimpleBottomNavigation() {
 
   return (
     <Box sx={{ maxWidth: 'xl' }}>
-      <Header />
       <SideBar />
-      <BottomNav />
     </Box>
   );
 }
