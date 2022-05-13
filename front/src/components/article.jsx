@@ -11,13 +11,18 @@ export default function Article(){
    
     const [ article, setArticle ] = useState();
     const [ source, setSource ] = useState();
+    const [ title, setTitle ] = useState();
     const notDisplaying = ["News.bg"];
+
+    // Set the url title
+    document.title = title;
 
     useEffect(() => {
         Axios.get("http://localhost:8000/article?id=" + url).then(
             (response) =>{
                 setArticle(response.data.link);
                 setSource(response.data.source);
+                setTitle(response.data.title);
             }
         )
     }, []);
