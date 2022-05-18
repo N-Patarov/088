@@ -21,7 +21,8 @@ export default function App(){
         },
         yellowish: {
           main: '#ECB365',
-        }  
+        }, 
+       
       },
       });
     return(

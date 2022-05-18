@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import 'dotenv/config';
 
+
 const registerSchema = Joi.object({
     name: Joi.string().min(3).required(),
     email: Joi.string().min(5).required().email(),
@@ -39,7 +40,7 @@ export const userRegister =
             res.send({user: user._id});
         }
         catch(err){
-            res.send(err);
+            res.send(err);      
         }
     } else{
         res.send(400);
