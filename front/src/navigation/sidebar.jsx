@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
@@ -26,6 +27,18 @@ export default function SimpleBottomNavigation() {
   const [value, setValue] = React.useState(0);
 
   const SideBar = () => {
+    const tx = {
+      '&.Mui-selected': {color: '#ECB365'},
+      '&.Mui.ListItem-hover': {color: '#ECB365'},
+      '&$focusVisible': {
+        backgroundColor: '#ECB365',
+      },
+      '&$selected, &$selected:hover': {
+        backgroundColor: '#ECB365',
+      },
+    }
+    
+
 
   const drawerWidth = 200;
     return (
@@ -60,11 +73,12 @@ export default function SimpleBottomNavigation() {
               </ListItemIcon>
               <ListItemText style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Home</Typography>} />
             </ListItemButton>
-            <ListItem button>
-              <ListItemIcon sx={{ color: '#FFFFFF' }}>
+            <ListItem button component={Link} to="/profile">
+              <ListItemIcon sx={{ color: '#FFFFFF', '&& hover': {color: "white"} }}>
+                
                 <PersonIcon />
               </ListItemIcon>
-              <ListItemText style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Profile</Typography>} />
+              <ListItemText sx={{ color: '#FFFFFF'}} style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Profile</Typography>} />
             </ListItem>
             <ListItem button>
               <ListItemIcon sx={{ color: '#FFFFFF' }}>

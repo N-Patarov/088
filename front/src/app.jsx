@@ -9,6 +9,7 @@ import ArticlePage from './routes/articlePage';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LoginPage from './routes/loginPage';
 import RegisterPage from './routes/registerPage';
+import ProfilePage from './routes/profilePage';
 
 export default function App(){
     const muiTheme = createTheme({
@@ -32,7 +33,8 @@ export default function App(){
                 <Route path="/" element={<HomePage />}/>   
                 <Route path="/article" element={<ArticlePage />}/>   
                 <Route path="/login" element={<LoginPage />}/> 
-                <Route path="/register" element={<RegisterPage />}/>              
+                <Route path="/register" element={<RegisterPage />}/> 
+                <Route path="/profile" element={<ProfilePage />}/>             
             </Routes>
         </Router>  
       </ThemeProvider>

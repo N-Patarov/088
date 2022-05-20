@@ -33,7 +33,6 @@ export default function Login(){
       if(passwordRagex.test(password) == false){setValidP(false)}else{setValidP(true)}
       if(emailRagex.test(email) == true && passwordRagex.test(password) == true){
         try{
-          const headers = {"Content-Type": "application/json"}
           const body = {email: email, password: password}
           const url = 'http://localhost:8000/api/user/login/';
           console.log(body)
@@ -45,8 +44,10 @@ export default function Login(){
               },
             }
           );
+          localStorage.setItem("token", res.data)
           console.log(res);
           setUserExists(true);
+          window.location = "/"
         } catch(e){
           setUserExists(false);
           console.log(e);
