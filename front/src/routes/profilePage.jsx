@@ -8,12 +8,12 @@ export default function PorfilePage(){
         <div>
             <Header />
 
-            <div style={{display: 'flex'}}>  
+            <div style={{}}>  
                     
                     <div>
                         <PermanentDrawerLeft />      
                     </div>                      
-                    <div style={{marginLeft:'3%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    <div style={{marginTop:'200px',display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                         <Profile />      
                     </div>
                             
