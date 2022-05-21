@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Card, CardActions, CardContent, CardMedia, IconButton, Typography, Grid, Skeleton, Checkbox} from '@mui/material/';
 import {ThumbUp, ChatBubble} from '@mui/icons-material';
+import {format} from 'timeago.js';
 import { useEffect, useState } from "react";
 import Axios from 'axios';
 import SkeletonGrid from './Skeleton';
@@ -66,7 +67,7 @@ export default function ArticleCard() {
                                             <Typography sx={{fontSize: '12px',display: "grid",alignItems: "center", justifyContent: "center"}}>100</Typography>
                                         </div>
                                         <Typography variant="body2" sx={{color: '#d9d9d9'}}>
-                                            {article.when ? article.when.substr(4, 17) : article.when}
+                                            {format(article.createdAt)}
                                         </Typography>
                                         <Typography gutterBottom variant="h7" component="div"  sx={{color: '#ECB365'}}>
                                             {article.source}

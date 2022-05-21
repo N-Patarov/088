@@ -9,7 +9,7 @@ const likeController =
 
         Article.findById(id)
         .then( async function(article){
-            if(article.likes.filter(like => like.user.toString() === req.user.id).length === 0)
+            if(article.likes.filter(like => like.user.toString() === req._id).length === 0)
             {return res.status(400).json({message: "article already liked"});}
                   
             
@@ -18,7 +18,7 @@ const likeController =
             await article.save();
             
             res.json((article.likes)); 
-             
+
         }).catch(err);
 
     } else {
