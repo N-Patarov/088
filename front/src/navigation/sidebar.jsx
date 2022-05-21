@@ -67,11 +67,11 @@ export default function SimpleBottomNavigation() {
             <Typography type="h2" style={{ fontSize: 30, fontWeight: 'bold' }}>Menu</Typography>
         </ListItem>
                   
-            <ListItemButton button className='ListButton'>
+            <ListItemButton button className='ListButton' component={Link} to="/">
               <ListItemIcon sx={{ color: '#FFFFFF'}}>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Home</Typography>} />
+              <ListItemText sx={{ color: '#FFFFFF', '&& hover': {color: "white"} }} style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Home</Typography>} />
             </ListItemButton>
             <ListItem button component={Link} to="/profile">
               <ListItemIcon sx={{ color: '#FFFFFF', '&& hover': {color: "white"} }}>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import jwt from 'jwt-decode'
-import { Typography, Table, TableBody, TableCell,TableContainer, TableHead, TableRow, Paper} from '@mui/material';
+import { Typography, Box } from '@mui/material';
 
 
 export default function Porfile(){
@@ -34,40 +34,28 @@ export default function Porfile(){
         );
     }
     return(
-        <div>
+        <div style={{width: '50%'}}>
             <Typography variant="h2" sx={{color: '#ECB365'}}>Profile</Typography>
             <div style={{color: 'white'}}>
-                
-                <div>You are logged in.</div>
-                <div>{name}</div>
-                <div>{email}</div>
-                <div>{date}</div>
+               
+
+                    <Box sx={{display: 'flex', alignItems: 'center'}}>
+                      <h2>Name:</h2>
+                      <div style={{marginLeft: '20%'}}>{name}</div>
+                    </Box>
+                    
+                    <Box sx={{display: 'flex', alignItems: 'center'}}>
+                      <h2>Email:</h2>
+                      <div style={{marginLeft: '20%'}}>{email}</div>
+                    </Box>
+
+                    <Box sx={{display: 'flex', alignItems: 'center'}}>
+                      <h2>Date:</h2>
+                      <div style={{marginLeft: '20%'}}>{date}</div>
+                    </Box>
+                 
             </div>
-            <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Date</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-            <TableRow
-              
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell  >
-                {name}
-              </TableCell>
-              <TableCell > {email}</TableCell>
-              <TableCell > {date}</TableCell>
-              
-            </TableRow>
-         
-        </TableBody>
-      </Table>
-    </TableContainer>
+            
         </div>
     );
 }
