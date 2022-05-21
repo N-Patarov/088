@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Card, CardActions, CardContent, CardMedia, IconButton, Typography, Grid, Skeleton, Checkbox} from '@mui/material/';
 import {ThumbUp, ChatBubble} from '@mui/icons-material';
 import {format} from 'timeago.js';
+import jwt from 'jwt-decode';
 import { useEffect, useState } from "react";
 import Axios from 'axios';
 import SkeletonGrid from './Skeleton';
@@ -11,22 +12,23 @@ export default function ArticleCard() {
     const [ listOfArticles, setListOfArticles ] = useState([]);
     const [ isLoading, setIsLoading ] = useState(true);
     async function getData() {
+        
+        
         await Axios.get("http://localhost:8000/api").then(         
-        (response) =>{
-                setListOfArticles(response.data);
-                setIsLoading(false)
+            (response) =>{
+                    setListOfArticles(response.data);
+                    setIsLoading(false)
             },
-            
+                
         )
     }
     async function like(id) {
-        await Axios.get("http://localhost:8000/article?id=" + id).then(         
-        (response) =>{
-                console.log(response.data)
-            },
-            
-        )
-        console.log("like")
+        const isLogedIn = await localStorage.getItem("token") 
+        const data = jwt(isLogedIn);
+        if(isLogedIn){
+            await Axios.put("http://localhost:8000/article/like/?id=" + id, {user: data._id})
+            console.log(data._id)
+        } else{ console.log("Log in first ")}
     }
     useEffect(() => {
         getData()
@@ -64,7 +66,7 @@ export default function ArticleCard() {
                                     <CardActions style={{"justifyContent": "space-evenly"}}>
                                         <div style={{display: "grid",alignItems: "center"}}>
                                             <Checkbox size="small" sx={{color: '#FFFFFF'}} color="yellowish" icon={<ThumbUp />} checkedIcon={<ThumbUp />} onChange={() => {like(article._id)}} />
-                                            <Typography sx={{fontSize: '12px',display: "grid",alignItems: "center", justifyContent: "center"}}>100</Typography>
+                                            <Typography sx={{fontSize: '12px',display: "grid",alignItems: "center", justifyContent: "center"}}>{article.likes.length}</Typography>
                                         </div>
                                         <Typography variant="body2" sx={{color: '#d9d9d9'}}>
                                             {format(article.createdAt)}

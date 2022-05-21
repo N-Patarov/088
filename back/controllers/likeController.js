@@ -9,11 +9,11 @@ const likeController =
 
         Article.findById(id)
         .then( async function(article){
-            if(article.likes.filter(like => like.user.toString() === req._id).length === 0)
+            if(article.likes.includes(req.user))
             {return res.status(400).json({message: "article already liked"});}
                   
             
-            article.likes.unshift({user: req.user._id})
+            article.likes.unshift({user: req.user})
 
             await article.save();
             

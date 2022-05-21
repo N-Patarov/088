@@ -1,6 +1,6 @@
 import { Button, Box, TextField, FormControl, Typography, Link, Grid } from "@mui/material";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import EmailIcon from '@mui/icons-material/Email';
 import PersonIcon from '@mui/icons-material/Person';
@@ -13,6 +13,14 @@ import axios from 'axios';
 export default function Login(){
     document.title = 'Login';
 
+    async function checkIfLoged(){
+      const isLogedIn = await localStorage.getItem("token") 
+      if(isLogedIn){window.location = "/profile"}
+      console.log(localStorage.getItem("token"))
+    }
+    useEffect(() => {
+       checkIfLoged();
+    },[])
    
     const [validE, setValidE] = useState(true);
     const [validP, setValidP] = useState(true);
@@ -65,7 +73,7 @@ export default function Login(){
     }
 
     const handleEmail = (e) => {
-     
+    
       setEmail(e.target.value);
     }
     const handlePassword = (e) => {

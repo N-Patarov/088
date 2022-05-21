@@ -3,6 +3,6 @@ import express from 'express';
 
 const router = express.Router();
 
-router.post('/', likeController);
+router.put('/', likeController);
 
 export default router;
