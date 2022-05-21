@@ -10,6 +10,7 @@ var articleSchema = new mongoose.Schema({
     imgLink: String,
     source: String,
     when: String,
+    likes: [],
     createdAt: { type: Date, default: Date.now},
     expire_at: {type: Date, default: Date.now, expires: 172800} 
 } 

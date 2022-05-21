@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Card, CardActions, CardContent, CardMedia, IconButton, Typography, Grid, Skeleton} from '@mui/material/';
+import {Card, CardActions, CardContent, CardMedia, IconButton, Typography, Grid, Skeleton, Checkbox} from '@mui/material/';
 import {ThumbUp, ChatBubble} from '@mui/icons-material';
 import { useEffect, useState } from "react";
 import Axios from 'axios';
@@ -18,6 +18,15 @@ export default function ArticleCard() {
             
         )
     }
+    async function like(id) {
+        await Axios.get("http://localhost:8000/article?id=" + id).then(         
+        (response) =>{
+                console.log(response.data)
+            },
+            
+        )
+        console.log("like")
+    }
     useEffect(() => {
         getData()
     }, []);
@@ -29,10 +38,12 @@ export default function ArticleCard() {
     }
     return(
         listOfArticles.map(
-            (article) => {
+            (article, i) => {
                 return( 
-                        <Grid item sm={6} md={4} lg={3}>                             
-                            <Card sx={{ maxWidth: 345, backgroundColor: '#064663', color: '#ffff' }}>
+                        <Grid item sm={6} md={4} lg={3}>
+                                                        
+                            <Card sx={{ maxWidth: 345, backgroundColor: '#064663', color: '#ffff' }} key={article._id} >
+                                
                                 <a href={"/article?id=" + article._id} target="_blank">
                                     <CardMedia
                                         component="img"
@@ -51,9 +62,7 @@ export default function ArticleCard() {
                                     </a>
                                     <CardActions style={{"justifyContent": "space-evenly"}}>
                                         <div style={{display: "grid",alignItems: "center"}}>
-                                            <IconButton size="small" sx={{color: '#ECB365'}}>
-                                                <ThumbUp fontSize="inherit" />               
-                                            </IconButton>
+                                            <Checkbox size="small" sx={{color: '#FFFFFF'}} color="yellowish" icon={<ThumbUp />} checkedIcon={<ThumbUp />} onChange={() => {like(article._id)}} />
                                             <Typography sx={{fontSize: '12px',display: "grid",alignItems: "center", justifyContent: "center"}}>100</Typography>
                                         </div>
                                         <Typography variant="body2" sx={{color: '#d9d9d9'}}>
