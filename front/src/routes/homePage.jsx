@@ -7,7 +7,7 @@ import Sidebar2 from '../components/sidebar/sidebar2';
 import { Grid } from '@mui/material';
 
 export default function HomePage(){
-    
+    document.title = "088.news";
     return(
         <div>
             <Header />
