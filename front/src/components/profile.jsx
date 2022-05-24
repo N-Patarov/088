@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import jwt from 'jwt-decode'
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, Button } from '@mui/material';
 
 
 export default function Porfile(){
@@ -10,6 +10,10 @@ export default function Porfile(){
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [date, setDate] = useState('');
+
+    function logOut(){
+        localStorage.removeItem('token');
+    }
 
     useEffect(() => {
         const hasToken = localStorage.getItem("token");
@@ -53,7 +57,9 @@ export default function Porfile(){
                       <h2>Date:</h2>
                       <div style={{marginLeft: '20%'}}>{date}</div>
                     </Box>
-                 
+                    <Box>
+                        <Button variant="filled"  onClick={logOut}>Log out</Button>
+                    </Box>
             </div>
             
         </div>

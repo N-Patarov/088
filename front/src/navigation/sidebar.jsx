@@ -23,6 +23,8 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Logo from '../photos/logo.svg';
 import Button from '@mui/material/Button';
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+
 export default function SimpleBottomNavigation() {
   const [value, setValue] = React.useState(0);
 
@@ -80,11 +82,11 @@ export default function SimpleBottomNavigation() {
               </ListItemIcon>
               <ListItemText sx={{ color: '#FFFFFF'}} style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Profile</Typography>} />
             </ListItem>
-            <ListItem button>
+            <ListItem button component={Link} to="/liked">
               <ListItemIcon sx={{ color: '#FFFFFF' }}>
-                <BookmarkIcon />
+                <ThumbUpIcon />
               </ListItemIcon>
-              <ListItemText style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Saved</Typography>} />
+              <ListItemText sx={{ color: '#FFFFFF'}} style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Liked</Typography>} />
             </ListItem>
         
         </List>

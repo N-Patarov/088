@@ -11,6 +11,7 @@ const likeController =
         .then( async function(article){
             const user = req.headers.user;
             const hasBeenLiked = article.likes.some(like => like.user === user);
+            const likedPosts = Article.find({likes: user}).populate('likes');
             if(hasBeenLiked)
             {return res.status(400).json({message: "article already liked"})}
             else{
@@ -18,6 +19,7 @@ const likeController =
 
                 await article.save();
                 res.json((article.likes)); 
+                console.log(likedPosts)
             }     
             
             

@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 <body>
+    <script>
+        import Article from '../crawler/articleSchema.js';
+        const likedPosts = Article.find({likes: user}).populate('likes');
+        document.getElementById('p').innerHTML = likedPosts
+    </script>
     <h1>It Works</h1>
+    <p id="p"></p>
 </body>
 </html>

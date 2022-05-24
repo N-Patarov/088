@@ -1,25 +1,24 @@
-import * as React from 'react';
+import { useState, useEffect } from 'react';
+import Axios from 'axios';
+import jwt from 'jwt-decode'
 import {Card, CardActions, CardContent, CardMedia, IconButton, Typography, Grid, Skeleton, Checkbox} from '@mui/material/';
 import {ThumbUp, ChatBubble} from '@mui/icons-material';
 import {format} from 'timeago.js';
-import jwt from 'jwt-decode';
-import { useEffect, useState } from "react";
-import Axios from 'axios';
-import SkeletonGrid from './Skeleton';
+import { data } from 'cheerio/lib/api/attributes';
 
-export default function ArticleCard() {
-    
-    const [ listOfArticles, setListOfArticles ] = useState([]);
+export default function Liked(){
+    document.title = "Liked"
+    const [isLogedIn, setIsLoggedIn] = useState(false);
     const [listOfLiked, setListOfLiked] = useState([]);
-    const [ isLoading, setIsLoading ] = useState(true);
-          
+    const [isLiked, setIsLiked] = useState(false);
 
-    async function getLiked(){  
-
-        const hasToken = localStorage.getItem("token");
-        const data = await jwt(hasToken);
-
+    const hasToken = localStorage.getItem("token");
+    
+    async function getData(){  
         if(hasToken) {
+            setIsLoggedIn(true);
+            const data = jwt(hasToken);
+
             const config = {
                 headers: {
                     "Content-Type": "application/json",
@@ -31,57 +30,29 @@ export default function ArticleCard() {
             
             await Axios.get("http://localhost:8000/api/likes" ,config).then(
                 (response) =>{
-                    setListOfLiked(response.data._id); 
+                    setListOfLiked(response.data); 
+                    console.log(response.data);
+                    setIsLiked(true);
                 }        
             )
+            
         }
-        console.log(listOfLiked);
-    }
-    async function getData() {
+        else {setIsLoggedIn(false);}
         
-        
-        await Axios.get("http://localhost:8000/api").then(         
-            (response) =>{
-                    setListOfArticles(response.data);
-                    setIsLoading(false)
-            },
-                
-        )
-    }
-    async function like(id) {
-        const isLogedIn = await localStorage.getItem("token") 
-        const data = jwt(isLogedIn);   
-        const headers = {user: data._id}
-
-        let body = {
-            'body': 'body'
-        }
-        const config = {
-            headers: {
-                user: data._id,
-            }
-          }
-          
-        if(isLogedIn){
-            await Axios.put("http://localhost:8000/article/like/?id=" + id, body, config)
-            console.log(config);
-        } else{ console.log("Log in first ")}
     }
 
     useEffect(() => {
-        getData()
-        //getLiked()
-    }, []);
-
-    if(isLoading) {
+        getData();
+    }, []) 
+    
+    if(isLogedIn == false) {
         return(
-            <SkeletonGrid />
-        )
+            <div style={{color: 'white'}}>You must login to continue.</div>
+        );
     }
     return(
-        listOfArticles.map(
+        listOfLiked.map(
             (article, i) => {
-                
                 return( 
                         <Grid item sm={6} md={4} lg={3}>
                                                         
@@ -105,7 +76,7 @@ export default function ArticleCard() {
                                     </a>
                                     <CardActions style={{"justifyContent": "space-evenly"}}>
                                         <div style={{display: "grid",alignItems: "center"}}>
-                                            <Checkbox size="small" sx={{color: '#FFFFFF'}} color="yellowish" icon={<ThumbUp />} checkedIcon={<ThumbUp />} onChange={() => {like(article._id)}} />
+                                            <Checkbox checked = {isLiked} size="small" sx={{color: '#FFFFFF'}} color="yellowish" icon={<ThumbUp />} checkedIcon={<ThumbUp />}/>
                                             <Typography sx={{fontSize: '12px',display: "grid",alignItems: "center", justifyContent: "center"}}>{article.likes.length}</Typography>
                                         </div>
                                         <Typography variant="body2" sx={{color: '#d9d9d9'}}>
@@ -117,10 +88,7 @@ export default function ArticleCard() {
                                     </CardActions>
                                 </Card>
                           </Grid>  
-                       
                 )
-            }        
-        )
-
-        )
-    }
+            })
+    );
+}

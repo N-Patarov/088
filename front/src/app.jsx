@@ -10,6 +10,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LoginPage from './routes/loginPage';
 import RegisterPage from './routes/registerPage';
 import ProfilePage from './routes/profilePage';
+import LikedPage from './routes/likedPage';
 
 export default function App(){
     const muiTheme = createTheme({
@@ -34,7 +35,8 @@ export default function App(){
                 <Route path="/article" element={<ArticlePage />}/>   
                 <Route path="/login" element={<LoginPage />}/> 
                 <Route path="/register" element={<RegisterPage />}/> 
-                <Route path="/profile" element={<ProfilePage />}/>             
+                <Route path="/profile" element={<ProfilePage />}/>   
+                <Route path="/liked" element={<LikedPage />}/>          
             </Routes>
         </Router>  
       </ThemeProvider>
