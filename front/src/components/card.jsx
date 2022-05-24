@@ -24,10 +24,21 @@ export default function ArticleCard() {
     }
     async function like(id) {
         const isLogedIn = await localStorage.getItem("token") 
-        const data = jwt(isLogedIn);
+        const data = jwt(isLogedIn);   
+        const headers = {user: data._id}
+
+        let body = {
+            'body': 'body'
+        }
+        const config = {
+            headers: {
+                user: data._id,
+            }
+          }
+          
         if(isLogedIn){
-            await Axios.put("http://localhost:8000/article/like/?id=" + id, {user: data._id})
-            console.log(data._id)
+            await Axios.put("http://localhost:8000/article/like/?id=" + id, body, config)
+            console.log(config);
         } else{ console.log("Log in first ")}
     }
     useEffect(() => {
