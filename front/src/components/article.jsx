@@ -12,7 +12,7 @@ export default function Article(){
     const [ article, setArticle ] = useState();
     const [ source, setSource ] = useState();
     const [ title, setTitle ] = useState();
-    const notDisplaying = ["News.bg"];
+    const notDisplaying = ["News.bg", "Vesti.bg"];
 
     // Set the url title
     document.title = title;
