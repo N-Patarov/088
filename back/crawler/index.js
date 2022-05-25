@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import{ scrapeFlagman } from './sources/flagman.js';
 import{ scrapeNewsBg } from './sources/newsBg.js';
 import{ scrapeVestiBg } from './sources/vestiBg.js';
+import{ scrapeNova } from './sources/nova.js';
+import{ scrapeDirBg } from './sources/dirBg.js';
 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/demo");
@@ -19,6 +21,8 @@ export async function scrape () {
       scrapeFlagman();
       scrapeNewsBg();
       scrapeVestiBg();
+      scrapeNova();
+      scrapeDirBg();
       const wait = await resolveAfter1Minute();
     }
 }

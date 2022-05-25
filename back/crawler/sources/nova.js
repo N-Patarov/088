@@ -2,24 +2,25 @@ import * as cheerio from 'cheerio';
 import request from 'request';
 import Article from '../articleSchema.js';
 
-const vestiBg = 'https://www.vesti.bg/posledni-novini';
+const nova = 'https://nova.bg/filter/all';
+
 var article = "";
 var title = "";
 var description = "";
 var img = "";
 
 
-export function scrapeVestiBg () {
+export function scrapeNova () {
  
-        request(vestiBg, (err, res, html) => {
+        request(nova, (err, res, html) => {
             if(!err && res.statusCode == 200){
               (async () => {
                 const $ = cheerio.load(html);
 
-                article = $('.gtm-ListNews-click').first().attr('href');
-                img = $('.img-holder').children().first().attr('src');
-                title = $('h2').first().text();
-                description = $('h3').first().text();
+                article = $('.title.gtm-LastListNews-click').first().attr('href');
+                img = $('.img-responsive').first().attr('src');
+                title = $('.title.gtm-LastListNews-click').first().text();
+                description = $('p').first().text();
                
                 
                 const articleExist = await Article.exists({ link: article });
@@ -40,7 +41,7 @@ export function scrapeVestiBg () {
                       description: description,
                       link: article,
                       imgLink: img,
-                      source: "Vesti.bg"
+                      source: "Nova.bg"
                   })
                   
                   await new_article.save(function(err,result){
