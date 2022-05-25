@@ -8,7 +8,7 @@ const getLikesController =
     const user = req.headers.user;
     try{
         if(user){
-            const likedPosts = await Article.find({'likes.user': user});
+            const likedPosts = await Article.find({'likes.user': user}).sort({_id:-1});
             res.json(likedPosts)
         } else{
             res.send(err);
