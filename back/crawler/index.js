@@ -5,6 +5,7 @@ import{ scrapeNewsBg } from './sources/newsBg.js';
 import{ scrapeVestiBg } from './sources/vestiBg.js';
 import{ scrapeNova } from './sources/nova.js';
 import{ scrapeDirBg } from './sources/dirBg.js';
+import{ scrapeFaktiBg } from './sources/fakti.js';
 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/demo");
@@ -23,6 +24,7 @@ export async function scrape () {
       scrapeVestiBg();
       scrapeNova();
       scrapeDirBg();
+      scrapeFaktiBg();
       const wait = await resolveAfter1Minute();
     }
 }
