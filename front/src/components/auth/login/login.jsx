@@ -164,7 +164,7 @@ export default function Login(){
                           <Link href="#" variant="body2" sx={{paddingRight:"20px", color:'#FFFF'}}>
                               Forgot password?
                           </Link>
-                          <Link href="/login" variant="body2" sx={{color:'#FFFF'}}>
+                          <Link href="/register" variant="body2" sx={{color:'#FFFF'}}>
                               {"Don't have an account? Sign up"}
                           </Link>
                       </Box>

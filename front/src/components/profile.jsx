@@ -57,8 +57,8 @@ export default function Porfile(){
                       <h2>Date:</h2>
                       <div style={{marginLeft: '20%'}}>{date}</div>
                     </Box>
-                    <Box>
-                        <Button variant="filled"  onClick={logOut}>Log out</Button>
+                    <Box sx={{marginTop: '20px'}}>
+                        <Button variant="contained" color="yellowish" sx={{color:'black'}}  onClick={logOut}>Log out</Button>
                     </Box>
             </div>
             
