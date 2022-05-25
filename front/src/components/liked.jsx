@@ -47,7 +47,7 @@ export default function Liked(){
     
     if(isLogedIn == false) {
         return(
-            <div style={{color: 'white'}}>You must login to continue.</div>
+            <div style={{display: 'flex',alignItems:'center',justifyContent: 'center',marginRight: '50%',color: 'white'}}>You must login to continue.</div>
         );
     }
     return(

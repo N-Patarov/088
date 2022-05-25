@@ -27,8 +27,18 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
 export default function SimpleBottomNavigation() {
   const [value, setValue] = React.useState(0);
+  const [isLogedIn, setIsLoggedIn] = React.useState();
 
+  const checkIfLoged = async () => {
+    const hasToken = await localStorage.getItem("token");
+    if (hasToken){setIsLoggedIn(true)}
+    else{setIsLoggedIn(false)}
+  }
+  React.useEffect(() => {
+    checkIfLoged();
+  })
   const SideBar = () => {
+    
     const tx = {
       '&.Mui-selected': {color: '#ECB365'},
       '&.Mui.ListItem-hover': {color: '#ECB365'},
@@ -43,6 +53,7 @@ export default function SimpleBottomNavigation() {
 
 
   const drawerWidth = 200;
+    
     return (
       <Box sx={{ display: { xs:"none", sm: "none", lg: "flex" }}}>
       <Drawer
@@ -75,14 +86,14 @@ export default function SimpleBottomNavigation() {
               </ListItemIcon>
               <ListItemText sx={{ color: '#FFFFFF', '&& hover': {color: "white"} }} style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Home</Typography>} />
             </ListItemButton>
-            <ListItem button component={Link} to="/profile">
+            <ListItem button component={Link} to={isLogedIn? "/profile": "/login"}>
               <ListItemIcon sx={{ color: '#FFFFFF', '&& hover': {color: "white"} }}>
                 
                 <PersonIcon />
               </ListItemIcon>
               <ListItemText sx={{ color: '#FFFFFF'}} style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Profile</Typography>} />
             </ListItem>
-            <ListItem button component={Link} to="/liked">
+            <ListItem button component={Link} to={isLogedIn? "/liked": "/login"}>
               <ListItemIcon sx={{ color: '#FFFFFF' }}>
                 <ThumbUpIcon />
               </ListItemIcon>
