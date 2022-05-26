@@ -55,7 +55,7 @@ export default function Porfile(){
 
                     <Box sx={{display: 'flex', alignItems: 'center'}}>
                       <h2>Date:</h2>
-                      <div style={{marginLeft: '20%'}}>{date}</div>
+                      <div style={{marginLeft: '20%'}}>{date.split("T")[0]}</div>
                     </Box>
                     <Box sx={{marginTop: '20px'}}>
                         <Button variant="contained" color="yellowish" sx={{color:'black'}}  onClick={logOut}>Log out</Button>
