@@ -63,7 +63,10 @@ export const userLogin =
     if( !validated.error && user && validPassword) {
 
         // JWT
-        const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET);
+        const token = jwt.sign({
+            _id: user._id,
+            sources: user.sources
+        }, process.env.JWT_SECRET);
         res.header('auth', token).send(token)
         //res.send("User logged in successfully!")
        

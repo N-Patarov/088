@@ -1,24 +1,28 @@
 import User from '../schema/userSchema.js';
 
 /*  Logic
-
-    var first = ["News.bg", "Nova,bg", "Dir.bg", "Flagman.bg", "Fakti.bg"];
-    var second = ["News.bg", "Nova,bg", "Dir.bg", "Flagman.bg"];
+ 
+    var first = ["News.bg", "Nova,bg", "Flagman.bg", "Fakti.bg"];
+    var second = ["News.bg", "Nova,bg", "Dir.bg"];
 
     var areDifferent = first.filter((x) => !second.includes(x)) !== 0;
+
     if(areDifferent){
-        if(difference.length == 0){
-            var difference2 = second.filter((x) => !first.includes(x));
-            second.pop(difference2)
-        }
+
     var difference = first.filter((x) => !second.includes(x));
+    var difference2 = second.filter((x) => !first.includes(x));
+
+    second.pop(difference2)
     second.push(difference)
     second = second.flat().sort()
+
     console.log(second);
+    
     }
+
 */
 
-const customFeedController = 
+const setSourcesController = 
    async (req, res, err) => {
     res.type('json');
     
@@ -33,9 +37,7 @@ const customFeedController =
             var areDifferent = sources.filter((x) => !user.sources.includes(x)) !== 0;
 
             if(areDifferent) {
-                var difference = sources.filter((x) => !user.sources.includes(x));
-                user.sources.push(difference)
-                user.sources = user.sources.flat().sort()
+                user.sources = sources;
                 await user.save();
             }
 
@@ -47,4 +49,4 @@ const customFeedController =
     }
 }
 
-export default customFeedController;
+export default setSourcesController;

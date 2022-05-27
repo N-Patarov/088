@@ -4,7 +4,7 @@ import jwt from 'jwt-decode'
 import {Card, CardActions, CardContent, CardMedia, IconButton, Typography, Grid, Skeleton, Checkbox} from '@mui/material/';
 import {ThumbUp, ChatBubble} from '@mui/icons-material';
 import {format} from 'timeago.js';
-import { data } from 'cheerio/lib/api/attributes';
+
 
 export default function Liked(){
     document.title = "Liked"

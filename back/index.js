@@ -10,7 +10,8 @@ import testRoute from './routes/testRoute.js';
 import userRoute from './routes/userRoute.js';
 import likeRoute from './routes/likeRoute.js';
 import getLikesRoute from './routes/getLikesRoute.js';
-import customFeedRoute from './routes/customFeedRoute.js';
+import setSourcesRoute from './routes/setSourcesRoute.js';
+import feedRoute from './routes/feedRoute.js';
 
 import { scrape }  from './crawler/index.js';
 
@@ -44,8 +45,9 @@ app.use("/", homeRoute);
 app.use("/api", apiRoute);
 app.use("/api/user", authRoute);
 app.use("/user", userRoute);
-app.use("/feed", customFeedRoute);
+app.use("/setSource", setSourcesRoute);
 app.use("/article/", articleRoute);
 app.use("/article/like", likeRoute);
 app.use("/api/likes", getLikesRoute);
+app.use("/feed", feedRoute);
 scrape();
