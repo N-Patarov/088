@@ -23,7 +23,8 @@ var userSchema = new mongoose.Schema({
     date:{
         type: Date, 
         default: Date.now
-    }
+    },
+    sources: []
 } 
 );
 
