@@ -3,7 +3,7 @@ import express from 'express';
 
 const router = express.Router();
 
-router.get('/', customFeedController);
+router.post('/', customFeedController);
 
 
 export default router;
