@@ -13,9 +13,9 @@ export default function ArticleCard() {
     const [listOfLiked, setListOfLiked] = useState([]);
     const [ isLoading, setIsLoading ] = useState(true);
           
+    
 
     async function getLiked(){  
-
         const hasToken = localStorage.getItem("token");
         const data = await jwt(hasToken);
 
@@ -38,15 +38,29 @@ export default function ArticleCard() {
         console.log(listOfLiked);
     }
     async function getData() {
-        
-        
-        await Axios.get("http://localhost:8000/api").then(         
-            (response) =>{
-                    setListOfArticles(response.data);
-                    setIsLoading(false)
-            },
+        const hasToken = localStorage.getItem("token");
+
+        if(hasToken) {
+            const data = await jwt(hasToken);
+            const user = data._id
+            
+                await Axios.get("http://localhost:8000/feed/?id=" + user).then(         
+                (response) =>{
+                        setListOfArticles(response.data);
+                        setIsLoading(false)
+                },
                 
-        )
+            )
+        } else{
+        
+            await Axios.get("http://localhost:8000/api").then(         
+                (response) =>{
+                        setListOfArticles(response.data);
+                        setIsLoading(false)
+                },
+                    
+            )
+        }
     }
     async function like(id) {
         const isLogedIn = await localStorage.getItem("token") 
