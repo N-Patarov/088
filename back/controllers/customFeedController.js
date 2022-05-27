@@ -19,7 +19,7 @@ const customFeedController =
     res.type('json');
     
     var sources = req.headers.sources;
-    if(!sources){res.status(401).send('No headers found')}
+    if(!sources){res.status(404).send('No headers found')}
 
     var id = req.query.id;
     if (id.match(/^[0-9a-fA-F]{24}$/)) {

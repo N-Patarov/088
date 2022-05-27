@@ -10,8 +10,8 @@ import testRoute from './routes/testRoute.js';
 import userRoute from './routes/userRoute.js';
 import likeRoute from './routes/likeRoute.js';
 import getLikesRoute from './routes/getLikesRoute.js';
-import{ scrapeFlagman } from './crawler/sources/flagman.js';
-import{ scrapeNewsBg } from './crawler/sources/newsBg.js';
+import customFeedRoute from './routes/customFeedRoute.js';
+
 import { scrape }  from './crawler/index.js';
 
 import Article from './crawler/articleSchema.js';
@@ -44,6 +44,7 @@ app.use("/", homeRoute);
 app.use("/api", apiRoute);
 app.use("/api/user", authRoute);
 app.use("/user", userRoute);
+app.use("/feed", customFeedRoute);
 app.use("/article/", articleRoute);
 app.use("/article/like", likeRoute);
 app.use("/api/likes", getLikesRoute);
