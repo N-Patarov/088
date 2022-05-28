@@ -41,7 +41,7 @@ const setSourcesController =
                 await user.save();
             }
 
-            res.json((user.sources)); 
+            res.status(200).send((user.sources)); 
 
         }).catch(err);
     } else {
