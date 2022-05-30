@@ -11,7 +11,7 @@ import Logo from '../../../photos/logo.svg';
 import axios from 'axios';
 
 export default function Login(){
-    document.title = 'Login';
+    document.title = 'Вход';
 
     async function checkIfLoged(){
       const isLogedIn = await localStorage.getItem("token") 
@@ -119,7 +119,7 @@ export default function Login(){
                         </a>
                       </Box>
                       <Box sx={{display: 'flex', justifyContent: 'center'}}>
-                        <Typography variant="h1" fontSize="40px" fontWeight="bold" color="white">Login</Typography>
+                        <Typography variant="h1" fontSize="40px" fontWeight="bold" color="white">Вход</Typography>
                       </Box>    
                       <Box sx={{ display: 'flex', alignItems: 'flex-end', paddingTop: '20px', justifyContent: 'center'}}>
                           {validE ? <EmailIcon sx={{ color: 'white', mr: 1, my: 2 }} /> : <ErrorIcon color='error' sx={{ mr: 1, my: 5 }} />}
@@ -136,11 +136,11 @@ export default function Login(){
                             }}       
                           autoComplete="email"
                           id="email" 
-                          label="Email" variant="outlined" />
+                          label="Имейл" variant="outlined" />
                       </Box>
                       <Box sx={{ display: 'flex', alignItems: 'flex-end', paddingTop: '20px', justifyContent: 'center'}}>
                       {validP ? <VpnKeyIcon sx={{ color: 'white', mr: 1, my: 2 }} /> : <ErrorIcon color='error' sx={{ mr: 1, my: 5 }} />}
-                          <TextField id="password" type="password" label="Password" variant="outlined"
+                          <TextField id="password" type="password" label="Парола" variant="outlined"
                             name= "password"
                             value={password}
                             onChange={(e) => handlePassword(e)}
@@ -155,17 +155,17 @@ export default function Login(){
                             />
                       </Box>
                       <Box sx={{display: 'flex', alignItems: 'flex-end', paddingTop: '20px' }}>
-                          <Button type="submit" variant="contained" onClick={handleSubmit} color="yellowish" sx={{width: '100%', color:'#FFFFF'}}>Login</Button>       
+                          <Button type="submit" variant="contained" onClick={handleSubmit} color="yellowish" sx={{width: '100%', color:'#FFFFF'}}>Вход</Button>       
                       </Box>
                       <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '20px'}}>
                         <Typography color="error">{userExists ? "" : "User doesn't exists"}</Typography>
                       </Box>
                       <Box sx={{display: 'flex', justifyContent: 'space-between', paddingTop: '20px'}}>
                           <Link href="#" variant="body2" sx={{paddingRight:"20px", color:'#FFFF'}}>
-                              Forgot password?
+                              Забравена парола
                           </Link>
                           <Link href="/register" variant="body2" sx={{color:'#FFFF'}}>
-                              {"Don't have an account? Sign up"}
+                              {"Нямаш акаунт? Регистрирай се"}
                           </Link>
                       </Box>
                     </form>

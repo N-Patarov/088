@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import jwt from 'jwt-decode'
-import { Typography, Box, Button, Checkbox, FormControlLabel, FormGroup, FormControl } from '@mui/material';
+import { Typography, Box, Button, Checkbox, FormControlLabel, FormGroup, FormControl, Alert } from '@mui/material';
 
 
 export default function Porfile(){
@@ -16,7 +16,8 @@ export default function Porfile(){
     const [checked, setChecked] = useState([]);
     // unchecked sources just for unchecked.map()
     const [unchecked, setUnchecked] = useState([]);
-    
+    const [alert, setAlert] = useState();
+
     function logOut(){
         localStorage.removeItem('token');
     }
@@ -40,8 +41,17 @@ export default function Porfile(){
     function saveSources(){
         const hasToken = localStorage.getItem("token");
         const data = jwt(hasToken);
-        Axios.post("http://localhost:8000/setSource/?id=" + data._id, {sources: checked})
+        Axios.post("http://localhost:8000/setSource/?id=" + data._id, {sources: checked}).then(
+            (response, error) => {
+                if(response.status === 200){setAlert(true)}
+                else{setAlert(false)}
+                setTimeout(() => {  window.location.reload(false); }, 500);
+                
+            }
+            
+        )
     }
+    
     async function getData() {
         const hasToken = localStorage.getItem("token");
         setIsLoggedIn(true);
@@ -77,67 +87,75 @@ export default function Porfile(){
         );
     }
     return(
-        <div style={{width: '50%'}}>
-            <Typography variant="h2" sx={{color: '#ECB365'}}>Profile</Typography>
-            <div style={{color: 'white'}}>
-               
+        <div style={{display: 'flex',alignItems: 'center',justifyContent: 'center',width: '50%',}}>
+            <div>
+                <Typography variant="h2" sx={{color: '#ECB365'}}>Профил</Typography>
+                <div style={{color: 'white'}}>
+                
 
-                    <Box sx={{display: 'flex', alignItems: 'center'}}>
-                      <h2>Name:</h2>
-                      <div style={{marginLeft: '20%'}}>{name}</div>
-                    </Box>
-                    
-                    <Box sx={{display: 'flex', alignItems: 'center'}}>
-                      <h2>Email:</h2>
-                      <div style={{marginLeft: '20%'}}>{email}</div>
-                    </Box>
-
-                    <Box sx={{display: 'flex', alignItems: 'center'}}>
-                      <h2>Date:</h2>
-                      <div style={{marginLeft: '20%'}}>{date.split("T")[0]}</div>
-                    </Box>
-
-                    <Box sx={{marginTop: '20px'}}>
-                        <Button variant="contained" color="yellowish" sx={{color:'black'}}  onClick={logOut}>Log out</Button>
-                    </Box>
-                </div>
-            <FormControl>
-                <FormGroup>
-                    <Box sx={{marginTop: '20px',color:'white'}}>
-                        <h2>Sources:</h2>
+                        <Box sx={{display: 'flex', alignItems: 'center'}}>
+                        <h2>Име:</h2>
+                        <div style={{marginLeft: '20%'}}>{name}</div>
+                        </Box>
                         
-                        {userSources.map( (source) => {
-                            return (
-                                
-                                <FormControlLabel 
-                                label = {source}
-                                key={source}
-                                control={
-                                    <Checkbox color="yellowish" defaultChecked value={source} onChange={(e) => {handleCheck(e)}}/>
-                                } />
-                                
-                            )
-                        })  
-                        }
-                        {unchecked.map( (source) => {
-                            return (
-                                
-                                <FormControlLabel 
-                                label = {source}
-                                key = {source}
-                                control={
-                                    <Checkbox color="yellowish" value={source} onChange={(e) => {handleCheck(e)}}/>
-                                } />
+                        <Box sx={{display: 'flex', alignItems: 'center'}}>
+                        <h2>Имейл:</h2>
+                        <div style={{marginLeft: '20%'}}>{email}</div>
+                        </Box>
+
+                        <Box sx={{display: 'flex', alignItems: 'center'}}>
+                        <h2>Дата:</h2>
+                        <div style={{marginLeft: '20%'}}>{date.split("T")[0]}</div>
+                        </Box>
+
+                        <Box sx={{marginTop: '20px'}}>
+                            <Button variant="contained" color="yellowish" sx={{color:'black'}}  onClick={logOut}>Log out</Button>
+                        </Box>
+                    </div>
+                <FormControl>
+                    <FormGroup>
+                        <Box sx={{marginTop: '20px',color:'white'}}>
+                            <h2>Източници:</h2>
                             
-                            )
-                        })
-                        }    
-                    </Box>
-                    <Box>
-                        <Button variant="contained" color="yellowish" onClick={saveSources}>Save</Button>
-                    </Box>
-                </FormGroup>
-            </FormControl>
+                            {userSources.map( (source) => {
+                                return (
+                                    
+                                    <FormControlLabel 
+                                    label = {source}
+                                    key={source}
+                                    control={
+                                        <Checkbox color="yellowish" defaultChecked value={source} onChange={(e) => {handleCheck(e)}}/>
+                                    } />
+                                    
+                                )
+                            })  
+                            }
+                            {unchecked.map( (source) => {
+                                return (
+                                    
+                                    <FormControlLabel 
+                                    label = {source}
+                                    key = {source}
+                                    control={
+                                        <Checkbox color="yellowish" value={source} onChange={(e) => {handleCheck(e)}}/>
+                                    } />
+                                
+                                )
+                            })
+                            }    
+                        </Box>
+                        <Box sx={{display: 'flex'}}>
+                            <Button variant="contained" color="yellowish" onClick={saveSources}>Запази</Button>
+                       
+                            {alert? 
+                                <Alert severity="success" sx={{backgroundColor: '#04293A', color:'white'}}>Запазено успешно</Alert>    
+                                :
+                                ""
+                            }
+                        </Box>
+                    </FormGroup>
+                </FormControl>
+            </div>
         </div>
     );
 }

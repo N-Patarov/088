@@ -77,27 +77,27 @@ export default function SimpleBottomNavigation() {
           paddingTop : '20%',// selected and (selected + hover) states 
       }}>
         <ListItem > 
-            <Typography type="h2" style={{ fontSize: 30, fontWeight: 'bold' }}>Menu</Typography>
+            <Typography type="h2" style={{ fontSize: 30, fontWeight: 'bold' }}>Меню</Typography>
         </ListItem>
                   
             <ListItemButton button className='ListButton' component={Link} to="/">
               <ListItemIcon sx={{ color: '#FFFFFF'}}>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText sx={{ color: '#FFFFFF', '&& hover': {color: "white"} }} style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Home</Typography>} />
+              <ListItemText sx={{ color: '#FFFFFF', '&& hover': {color: "white"} }} style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Начало</Typography>} />
             </ListItemButton>
             <ListItem button component={Link} to={isLogedIn? "/profile": "/login"}>
               <ListItemIcon sx={{ color: '#FFFFFF', '&& hover': {color: "white"} }}>
                 
                 <PersonIcon />
               </ListItemIcon>
-              <ListItemText sx={{ color: '#FFFFFF'}} style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Profile</Typography>} />
+              <ListItemText sx={{ color: '#FFFFFF'}} style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Профил</Typography>} />
             </ListItem>
             <ListItem button component={Link} to={isLogedIn? "/liked": "/login"}>
               <ListItemIcon sx={{ color: '#FFFFFF' }}>
                 <ThumbUpIcon />
               </ListItemIcon>
-              <ListItemText sx={{ color: '#FFFFFF'}} style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Liked</Typography>} />
+              <ListItemText sx={{ color: '#FFFFFF'}} style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Запазени</Typography>} />
             </ListItem>
         
         </List>
