@@ -24,6 +24,7 @@ import List from '@mui/material/List';
 import Logo from '../photos/logo.svg';
 import Button from '@mui/material/Button';
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 
 export default function SimpleBottomNavigation() {
   const [value, setValue] = React.useState(0);
@@ -88,17 +89,19 @@ export default function SimpleBottomNavigation() {
             </ListItemButton>
             <ListItem button component={Link} to={isLogedIn? "/profile": "/login"}>
               <ListItemIcon sx={{ color: '#FFFFFF', '&& hover': {color: "white"} }}>
+              {isLogedIn? <PersonIcon />: <LockOpenIcon />}
                 
-                <PersonIcon />
               </ListItemIcon>
-              <ListItemText sx={{ color: '#FFFFFF'}} style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Профил</Typography>} />
+              <ListItemText sx={{ color: '#FFFFFF'}} style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>{isLogedIn? "Профил": "Вход"}</Typography>} />
             </ListItem>
+            {isLogedIn? 
             <ListItem button component={Link} to={isLogedIn? "/liked": "/login"}>
               <ListItemIcon sx={{ color: '#FFFFFF' }}>
                 <ThumbUpIcon />
               </ListItemIcon>
               <ListItemText sx={{ color: '#FFFFFF'}} style={{ fontSize: 14}} primary={<Typography style={{ fontSize: 23}}>Запазени</Typography>} />
-            </ListItem>
+            </ListItem> : ''}
+            
         
         </List>
       </Drawer>

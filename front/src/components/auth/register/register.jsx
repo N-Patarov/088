@@ -106,7 +106,7 @@ export default function Register(){
     };
     return(
           <div className={styles['form-wrapper']}>
-                <FormControl>
+                <FormControl sx={{width:"360px"}}>
                   <form onSubmit={handleSubmit}>
                       <Box sx={{display: 'flex', justifyContent: 'center'}}>
                         <a href="/">
@@ -114,7 +114,7 @@ export default function Register(){
                         </a>
                       </Box>
                       <Box sx={{display: 'flex', justifyContent: 'center'}}>
-                        <Typography variant="h1" fontSize="40px" fontWeight="bold" color="white">Register</Typography>
+                        <Typography variant="h1" fontSize="40px" fontWeight="bold" color="white">Регистрация</Typography>
                       </Box>
                       <Box sx={{ display: 'flex', alignItems: 'flex-end', paddingTop: '20px', justifyContent: 'center'}}>
                           {validN ? <PersonIcon sx={{ color: 'white', mr: 1, my: 2 }} /> : <ErrorIcon color='error' sx={{ mr: 1, my: 5 }} />}
@@ -130,7 +130,7 @@ export default function Register(){
                             }}      
                           id="name" 
                           autoComplete="name"
-                          label="Name" variant="outlined" />
+                          label="Име" variant="outlined" />
                       </Box>
                       <Box sx={{ display: 'flex', alignItems: 'flex-end', paddingTop: '20px', justifyContent: 'center'}}>
                           {validE ? <EmailIcon sx={{ color: 'white', mr: 1, my: 2 }} /> : <ErrorIcon color='error' sx={{ mr: 1, my: 5 }} />}
@@ -147,11 +147,11 @@ export default function Register(){
                             }}       
                           autoComplete="email"
                           id="email" 
-                          label="Email" variant="outlined" />
+                          label="Имейл" variant="outlined" />
                       </Box>
                       <Box sx={{ display: 'flex', alignItems: 'flex-end', paddingTop: '20px', justifyContent: 'center'}}>
                       {validP ? <VpnKeyIcon sx={{ color: 'white', mr: 1, my: 2 }} /> : <ErrorIcon color='error' sx={{ mr: 1, my: 5 }} />}
-                          <TextField id="password" type="password" label="Password" variant="outlined"
+                          <TextField id="password" type="password" label="Парола" variant="outlined"
                             name= "password"
                             value={password}
                             onChange={(e) => handlePassword(e)}
@@ -173,10 +173,10 @@ export default function Register(){
                       </Box>
                       <Box sx={{display: 'flex', justifyContent: 'space-between', paddingTop: '20px'}}>
                           <Link href="#" variant="body2" sx={{paddingRight:"20px", color:'#FFFF'}}>
-                              Forgot password?
+                              Забравена парола
                           </Link>
                           <Link href="/login" variant="body2" sx={{color:'#FFFF'}}>
-                              {"Already have an account? Sign in"}
+                              {"Имаш акаунт? Вход"}
                           </Link>
                       </Box>
                     </form>

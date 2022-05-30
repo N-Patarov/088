@@ -18,8 +18,9 @@ export default function Porfile(){
     const [unchecked, setUnchecked] = useState([]);
     const [alert, setAlert] = useState();
 
-    function logOut(){
-        localStorage.removeItem('token');
+    async function logOut(){
+        await localStorage.removeItem('token');
+        window.location = '/'
     }
     function handleCheck(e){  
        console.log(e.target.value)
