@@ -12,12 +12,20 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 export default function BottomNav () {
     const [url, setUrl] = React.useState();
     const [value, setValue] = React.useState();
+    const [isLogedIn, setIsLoggedIn] = React.useState();
+
     var isZero = false;
     var isOne = false;
     var isTwo = false;
     if(value == 0) isZero = true;
     if(value == 1) isOne = true;
     if(value == 2) isTwo = true;
+
+    const checkIfLoged = async () => {
+        const hasToken = await localStorage.getItem("token");
+        if (hasToken){setIsLoggedIn(true)}
+        else{setIsLoggedIn(false)}
+      }
 
     const getUrl = () => {
         var path = window.location.pathname
@@ -27,6 +35,7 @@ export default function BottomNav () {
     }
     React.useEffect(() => {
         getUrl();
+        checkIfLoged();
     })
     return (
       <BottomNavigation
@@ -42,33 +51,33 @@ export default function BottomNav () {
         (<BottomNavigationAction component={Link} to="/"
             sx={{
                 "& .Mui-selected, .Mui-selected, svg": {color: "#ECB365"}
-            }} label="Home" icon={<HomeIcon />} />
+            }} label="Начало" icon={<HomeIcon />} />
         )    :
         (
             <BottomNavigationAction component={Link} to="/"
             sx={{
                 color: "#FFFF"
-            }} label="Home" icon={<HomeIcon />} />  
+            }} label="Начало" icon={<HomeIcon />} />  
         )
         }
         {isOne?
-        (<BottomNavigationAction  component={Link} to="/profile"
+        (<BottomNavigationAction  component={Link} to={isLogedIn? "/profile" : "/login"}
             sx={{
                 "& .Mui-selected, .Mui-selected, svg": {color: "#ECB365"}
-            }} label="Profile" icon={<PersonIcon />} />
+            }} label="Профил" icon={<PersonIcon />} />
         )    :
         (
-            <BottomNavigationAction sx={{color: '#FFFF'}}  component={Link} to="/profile" label="Profile" icon={<PersonIcon />} />
+            <BottomNavigationAction sx={{color: '#FFFF'}}  component={Link} to={isLogedIn? "/profile" : "/login"} label="Профил" icon={<PersonIcon />} />
         )
         }
         {isTwo?
-        (<BottomNavigationAction  component={Link} to="/liked"
+        (<BottomNavigationAction  component={Link} to={isLogedIn? "/liked" : "/login"}
             sx={{
                 "& .Mui-selected, .Mui-selected, svg": {color: "#ECB365"}
-            }} label="Liked" icon={<ThumbUpIcon />} />
+            }} label="Запазени" icon={<ThumbUpIcon />} />
         )    :
         (
-            <BottomNavigationAction sx={{color: '#FFFF'}} component={Link} to="/liked" label="Liked" icon={<ThumbUpIcon />} />
+            <BottomNavigationAction sx={{color: '#FFFF'}} component={Link} to={isLogedIn? "/liked" : "/login"} label="Запазени" icon={<ThumbUpIcon />} />
         )
         }
         
