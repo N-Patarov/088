@@ -47,6 +47,8 @@ export default function Register(){
           );
           console.log(res);
           setUserExists(false);
+          localStorage.setItem("token", res.data)
+          window.location.href = "/register/setSources"
         } catch(e){
           setUserExists(true);
           console.log(e);
@@ -61,7 +63,7 @@ export default function Register(){
     const handleSubmit = (e) => {
       e.preventDefault();
       console.log("Click");
-      signUp(name, email, password);
+      signUp(name, email, password)
     }
 
     const handleName = (e) => {

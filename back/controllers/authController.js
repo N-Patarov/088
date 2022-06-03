@@ -37,7 +37,12 @@ export const userRegister =
         });
         try{
             await user.save();
-            res.send({user: user._id});
+            // JWT
+            const token = jwt.sign({
+                _id: user._id,
+                sources: user.sources
+            }, process.env.JWT_SECRET);
+            res.header('auth', token).send(token)
         }
         catch(err){
             res.send(err);      
