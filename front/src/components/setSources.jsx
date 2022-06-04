@@ -9,6 +9,7 @@ export default function SetSources(){
     const [userSources, setUserSources] = useState([]);
     const [alert, setAlert] = useState();
     const [checked, setChecked] = useState([]);
+    const all = ["News.bg","Flagman.bg","Dir.bg","Vesti.bg","Fakti.bg","Nova.bg"];
 
     async function getData(){
         const hasToken = await localStorage.getItem("token");
@@ -42,6 +43,9 @@ export default function SetSources(){
          }
          console.log(checked)
      }
+     function checkAll(e){
+         checked.push(...all);
+     }
      function saveSources(){
          const hasToken = localStorage.getItem("token");
          const data = jwt(hasToken);
@@ -60,7 +64,7 @@ export default function SetSources(){
         <div>
             <FormControl>
                     <FormGroup>
-                        <Box sx={{marginTop: '20px',color:'white'}}>
+                        <Box sx={{color:'white'}}>
                             <h2>Източници:</h2>
                             
                             {userSources.map( (source) => {
@@ -88,7 +92,13 @@ export default function SetSources(){
                                 
                                 )
                             })
-                            }    
+                            }
+                            <FormControlLabel 
+                                    label = "Всички"
+                                    key = {"all"}
+                                    control={
+                                        <Checkbox color="yellowish" onChange={(e) => {checkAll(e)}}/>
+                                    } />
                         </Box>
                         <Box sx={{display: 'flex'}}>
                             <Button variant="contained" color="yellowish" onClick={saveSources}>Запази</Button>

@@ -3,6 +3,7 @@ import { Grid } from '@mui/material';
 import PermanentDrawerLeft from '../navigation/sidebar';
 import Header from '../navigation/header';
 import Bottom from '../navigation/bottom';
+import LikedGrid from '../components/likedGrid';
 
 export default function likedPage(){
     return(
@@ -15,10 +16,10 @@ export default function likedPage(){
                                 <PermanentDrawerLeft />      
                 </div> 
             
-                <div style={{marginLeft:'3%', marginTop: '10%', display:'flex',alignItems: 'center'}}>
-                    <Grid container spacing={2}>
-                        <Liked />
-                    </Grid>
+                <div style={{marginLeft:'3%', display:'flex',alignItems: 'center', justifyContent: 'center'}}>
+                  
+                        <LikedGrid />
+                  
                 </div>
             </div>
             <Bottom />

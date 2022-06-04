@@ -54,7 +54,7 @@ export default function Liked(){
         listOfLiked.map(
             (article, i) => {
                 return( 
-                        <Grid item sm={6} md={4} lg={3}>
+                        <Grid item sm={6} md={4} lg={4}>
                                                         
                             <Card sx={{ maxWidth: 345, backgroundColor: '#064663', color: '#ffff' }} key={article._id} >
                                 

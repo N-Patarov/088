@@ -110,7 +110,7 @@ export default function Porfile(){
                         </Box>
 
                         <Box sx={{marginTop: '20px'}}>
-                            <Button variant="contained" color="yellowish" sx={{color:'black'}}  onClick={logOut}>Log out</Button>
+                            <Button variant="contained" color="yellowish" sx={{color:'black'}}  onClick={logOut}>Изход</Button>
                         </Box>
                     </div>
                 <FormControl>
