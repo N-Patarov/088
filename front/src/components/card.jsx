@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Card, CardActions, CardContent, CardMedia, IconButton, Typography, Grid, Skeleton, Checkbox} from '@mui/material/';
+import {Card, CardActions, CardContent, CardMedia, IconButton, Typography, Grid, Skeleton, Checkbox, Button} from '@mui/material/';
 import {ThumbUp, ChatBubble} from '@mui/icons-material';
 import {format} from 'timeago.js';
 import jwt from 'jwt-decode';
@@ -7,13 +7,13 @@ import { useEffect, useState } from "react";
 import Axios from 'axios';
 import SkeletonGrid from './Skeleton';
 
-export default function ArticleCard() {
+
+export default function ArticleCard(props) {
     
     const [ listOfArticles, setListOfArticles ] = useState([]);
     const [listOfLiked, setListOfLiked] = useState([]);
     const [ isLoading, setIsLoading ] = useState(true);
           
-    
 
     async function getLiked(){  
         const hasToken = localStorage.getItem("token");
@@ -93,7 +93,7 @@ export default function ArticleCard() {
         )
     }
     return(
-        listOfArticles.map(
+        listOfArticles.slice(0, props.visibleCount).map(
             (article, i) => {
                 
                 return( 
@@ -131,10 +131,12 @@ export default function ArticleCard() {
                                     </CardActions>
                                 </Card>
                           </Grid>  
-                       
                 )
-            }        
+               
+            }
+           
+        )       
+       
         )
-
-        )
+       
     }
