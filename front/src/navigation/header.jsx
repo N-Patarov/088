@@ -14,7 +14,7 @@ export default function Header () {
               <Box sx={{margin: "auto"}}>              
                 <div style={{ flexGrow: 1, display: "flex",}}>
                   <a href="/">
-                    <img style={{width:40,height:30}} src={Logo}></img>
+                    <img style={{width:40,height:30}} alt="Logo" src={Logo}></img>
                   </a>
                     <Typography sx={{marginLeft:"5px", marginTop: "8px"}}>.News</Typography>
                 </div>   
