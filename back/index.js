@@ -12,7 +12,8 @@ import likeRoute from './routes/likeRoute.js';
 import getLikesRoute from './routes/getLikesRoute.js';
 import setSourcesRoute from './routes/setSourcesRoute.js';
 import feedRoute from './routes/feedRoute.js';
-
+import path from 'path';
+const __dirname = path.resolve();
 import { scrape }  from './crawler/index.js';
 
 import Article from './crawler/articleSchema.js';
@@ -30,6 +31,11 @@ app.use(function(req, res, next) {
   });
 
 app.set('view engine', 'ejs');
+
+app.use(express.static(path.join(__dirname, '../build')))
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build'))
+})
 
 
 
