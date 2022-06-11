@@ -53,7 +53,7 @@ export default function ArticleCard(props) {
             )
         } else{
         
-            await Axios.get("http://164.92.140.210:8000/api").then(         
+            await Axios.get("http://localhost:8000/api").then(         
                 (response) =>{
                         setListOfArticles(response.data);
                         setIsLoading(false)
@@ -77,7 +77,7 @@ export default function ArticleCard(props) {
           }
           
         if(isLogedIn){
-            await Axios.put("http://0.0.0.0:8000/article/like/?id=" + id, body, config)
+            await Axios.put("http://localhost:8000/article/like/?id=" + id, body, config)
             console.log(config);
         } else{ console.log("Log in first ")}
     }
