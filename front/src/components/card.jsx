@@ -53,7 +53,7 @@ export default function ArticleCard(props) {
             )
         } else{
         
-            await Axios.get(process.env.API_URL + "/api").then(         
+            await Axios.get(process.env.REACT_APP_API_URL + "/api").then(         
                 (response) =>{
                         setListOfArticles(response.data);
                         console.log(response.data);
