@@ -53,7 +53,7 @@ export default function ArticleCard(props) {
             )
         } else{
         
-            await Axios.get("http://localhost:8000/api").then(         
+            await Axios.get("http://0.0.0.0:8000/api").then(         
                 (response) =>{
                         setListOfArticles(response.data);
                         setIsLoading(false)
