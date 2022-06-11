@@ -77,7 +77,7 @@ export default function ArticleCard(props) {
           }
           
         if(isLogedIn){
-            await Axios.put("http://localhost:8000/article/like/?id=" + id, body, config)
+            await Axios.put("http://0.0.0.0:8000/article/like/?id=" + id, body, config)
             console.log(config);
         } else{ console.log("Log in first ")}
     }
