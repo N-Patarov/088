@@ -42,7 +42,7 @@ export default function Login(){
       if(emailRagex.test(email) == true && passwordRagex.test(password) == true){
         try{
           const body = {email: email, password: password}
-          const url = '/user/login/';
+          const url = '/api/user/login/';
           console.log(body)
           const res = await axios.post(process.env.REACT_APP_API_URL + url,
             body,
