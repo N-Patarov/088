@@ -35,7 +35,7 @@ export default function Register(){
         try{
           const headers = {"Content-Type": "application/json"}
           const body = {name: name, email: email, password: password}
-          const url = 'http://localhost:8000/api/user/register/';
+          const url = '/user/register/';
           console.log(body)
           const res = await axios.post(url,
             body,
