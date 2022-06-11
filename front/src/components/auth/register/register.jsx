@@ -45,16 +45,13 @@ export default function Register(){
               },
             }
           );
-          console.log(res);
+          
           setUserExists(false);
           localStorage.setItem("token", res.data)
           window.location.href = "/register/setSources"
         } catch(e){
           setUserExists(true);
-          console.log(e);
-          console.log(name);
-          console.log(email);
-          console.log(password);
+         
         }
       } else{ console.log("Not valid") }
     }
@@ -76,8 +73,6 @@ export default function Register(){
     const handlePassword = (e) => {
      
       setPassword(e.target.value);
-      console.log(e.target.value)
-      console.log(validP)
     }
     const tx = {
       width:'100%',
