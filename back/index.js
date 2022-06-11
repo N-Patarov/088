@@ -36,9 +36,9 @@ app.use(function(req, res, next) {
 
 app.set('view engine', 'ejs');
 
-app.use(express.static(path.join(__dirname, '../front/build/static')))
+app.use(express.static(path.join(__dirname, '../front/build/')))
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../front/build/static'))
+    res.sendFile(path.join(__dirname, '../front/build/'))
 })
 
 
