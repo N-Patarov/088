@@ -56,5 +56,5 @@
     "react-performance-testing": "^2.0.0",
     "sass": "^1.50.1"
   },
-  "proxy": "http://127.0.0.1:8000/"
+  "proxy": "http://164.92.140.210:8000"
 }
