@@ -28,7 +28,7 @@ export default function Liked(){
         
             console.log(config);
             
-            await Axios.get("http://localhost:8000/api/likes" ,config).then(
+            await Axios.get(process.env.REACT_APP_API_URL + "/api/likes" ,config).then(
                 (response) =>{
                     setListOfLiked(response.data); 
                     console.log(response.data);

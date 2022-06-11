@@ -15,7 +15,7 @@ export default function SetSources(){
         const hasToken = await localStorage.getItem("token");
         if(hasToken){
             const data = await jwt(hasToken);
-            await Axios.get("http://localhost:8000/user/?id=" + data._id).then(
+            await Axios.get(process.env.REACT_APP_API_URL + "/user/?id=" + data._id).then(
                 (response) =>{
                     setUnchecked(["News.bg","Flagman.bg","Dir.bg","Vesti.bg","Fakti.bg","Nova.bg"].filter((x) => !response.data.sources.includes(x)))
                     setUserSources(response.data.sources);
@@ -49,7 +49,7 @@ export default function SetSources(){
      function saveSources(){
          const hasToken = localStorage.getItem("token");
          const data = jwt(hasToken);
-         Axios.post("http://localhost:8000/setSource/?id=" + data._id, {sources: checked}).then(
+         Axios.post(process.env.REACT_APP_API_URL + "/setSource/?id=" + data._id, {sources: checked}).then(
              (response, error) => {
                  if(response.status === 200){setAlert(true)}
                  else{setAlert(false)}

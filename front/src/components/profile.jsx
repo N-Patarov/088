@@ -42,7 +42,7 @@ export default function Porfile(){
     function saveSources(){
         const hasToken = localStorage.getItem("token");
         const data = jwt(hasToken);
-        Axios.post("http://localhost:8000/setSource/?id=" + data._id, {sources: checked}).then(
+        Axios.post(process.env.REACT_APP_API_URL + "/setSource/?id=" + data._id, {sources: checked}).then(
             (response, error) => {
                 if(response.status === 200){setAlert(true)}
                 else{setAlert(false)}
@@ -57,7 +57,7 @@ export default function Porfile(){
         const hasToken = localStorage.getItem("token");
         setIsLoggedIn(true);
         const data = jwt(hasToken);
-        await Axios.get("http://localhost:8000/user/?id=" + data._id).then(
+        await Axios.get(process.env.REACT_APP_API_URL + "/user/?id=" + data._id).then(
             (response) =>{
                 setName(response.data.name);
                 setEmail(response.data.email);        

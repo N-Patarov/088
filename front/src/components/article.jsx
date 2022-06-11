@@ -18,7 +18,7 @@ export default function Article(){
     document.title = title;
 
     useEffect(() => {
-        Axios.get("http://localhost:8000/article?id=" + url).then(
+        Axios.get(process.env.REACT_APP_API_URL + "/article?id=" + url).then(
             (response) =>{
                 setArticle(response.data.link);
                 setSource(response.data.source);

@@ -44,7 +44,7 @@ export default function Login(){
           const body = {email: email, password: password}
           const url = '/user/login/';
           console.log(body)
-          const res = await axios.post(url,
+          const res = await axios.post(process.env.REACT_APP_API_URL + url,
             body,
             {
               headers: {     

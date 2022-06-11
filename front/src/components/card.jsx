@@ -29,7 +29,7 @@ export default function ArticleCard(props) {
         
             console.log(config);
             
-            await Axios.get("http://localhost:8000/api/likes" ,config).then(
+            await Axios.get(process.env.REACT_APP_API_URL + "/api/likes" ,config).then(
                 (response) =>{
                     setListOfLiked(response.data._id); 
                 }        
@@ -44,7 +44,7 @@ export default function ArticleCard(props) {
             const data = await jwt(hasToken);
             const user = data._id
             
-                await Axios.get("http://localhost:8000/feed/?id=" + user).then(         
+                await Axios.get(process.env.REACT_APP_API_URL + "/feed/?id=" + user).then(         
                 (response) =>{
                         setListOfArticles(response.data);
                         setIsLoading(false)
@@ -78,7 +78,7 @@ export default function ArticleCard(props) {
           }
           
         if(isLogedIn){
-            await Axios.put("http://localhost:8000/article/like/?id=" + id, body, config)
+            await Axios.put(process.env.REACT_APP_API_URL + "/article/like/?id=" + id, body, config)
             console.log(config);
         } else{ console.log("Log in first ")}
     }
