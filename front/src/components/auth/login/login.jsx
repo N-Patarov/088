@@ -58,6 +58,9 @@ export default function Login(){
           window.location = "/"
         } catch(e){
           setUserExists(false);
+          console.log(e);
+          console.log(email);
+          console.log(password);
         }
       } else{ console.log("Not valid") }
     }
@@ -74,7 +77,10 @@ export default function Login(){
       setEmail(e.target.value);
     }
     const handlePassword = (e) => {
+     
       setPassword(e.target.value);
+      console.log(e.target.value)
+      console.log(validP)
     }
     const tx = {
       width:'100%',

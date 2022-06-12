@@ -88,7 +88,7 @@ export default function Porfile(){
         );
     }
     return(
-        <div style={{display: 'flex',alignItems: 'center',justifyContent: 'center',width: '50%', marginBottom: '20%'}}>
+        <div style={{display: 'flex',alignItems: 'center',justifyContent: 'center',width: '50%',}}>
             <div>
                 <Typography variant="h2" sx={{color: '#ECB365'}}>Профил</Typography>
                 <div style={{color: 'white'}}>
