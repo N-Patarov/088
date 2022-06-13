@@ -98,9 +98,9 @@ export default function ArticleCard(props) {
             (article, i) => {
                 
                 return( 
-                        <Grid item sm={6} md={4} lg={3}>
+                        <Grid item sm={6} md={4} lg={3} key={article._id}>
                                                         
-                            <Card sx={{ maxWidth: 345, backgroundColor: '#064663', color: '#ffff' }} key={article._id} >
+                            <Card sx={{ maxWidth: 345, backgroundColor: '#064663', color: '#ffff' }} >
                                 
                                 <a href={"/article?id=" + article._id} target="_blank">
                                     <CardMedia
